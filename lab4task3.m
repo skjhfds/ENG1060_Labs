@@ -1,20 +1,24 @@
 % Harry Choi 32464223
 % 1-april-2021
-% Lab 4 Task 2
+% Lab 4 Task 3
 close all; clc; clear
+
+%import data
 T = importdata('temperatures.txt');
+
 %plot temp against time
-subplot(1,2,1)
 plot(T,'rd')
 title('Temperature against Time')
 xlabel('Time in days')
 ylabel('Temperature in Celsius')
 
+%create filtering logical
 L = logical(T>45|T<0);
-T([5,13,34,40,42]);
-subplot(1,2,2)
-plot(T,'rd')
+L([5,13,34,40,42])=1;
+
+%plot filtered temp against time
+figure
+plot(T(~L),'bo')
 title('Filtered Temperature against Time')
 xlabel('Time in days')
 ylabel('Temperature in Celsius')
-close all

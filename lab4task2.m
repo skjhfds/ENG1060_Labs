@@ -2,6 +2,8 @@
 % 31-Mar-2021
 % Lab 4 Task 2
 close all; clc; clear
+
+%import data
 A = importdata("lab4_plot_data2.txt");
 
 %assume lab questions incorrect, columns are x & y, not rows
