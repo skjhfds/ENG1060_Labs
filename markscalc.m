@@ -18,11 +18,7 @@ function [final_mark, grade] = markscalc(lab, assignment, other, exam)
 % final_mark Final mark
 %      grade Letter grade
 %
-lab_ = sum(2.5.*lab./10);
-ass  =      assignment/10;
-oth  = 15 * other/15;
-exa  = 50 * exam/100;
-final_mark = lab_ +ass +oth +exa;
+final_mark = round(sum(2.5.*lab./10) + 10*assignment/10 + 15*other/15 + 50*exam/100);
 if final_mark >= 80
     grade = 'HD';
 elseif final_mark >= 70
