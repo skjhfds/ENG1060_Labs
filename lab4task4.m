@@ -26,4 +26,5 @@ legend('Distance to 90% Terminal Velocity Against Mass','Location','bestoutside'
 %print output to .txt
 f = fopen('skydivers.txt','w');
 fprintf(f,'mass (kg)  vt (m/s)    yt (m)\n');
-fprintf(f,'%9.2f %9.2f %9.2f\n',m',vt',yt');
+fprintf(f,'%9.2f %9.2f %9.2f\n',[m,vt,yt]);
+fclose(f);
