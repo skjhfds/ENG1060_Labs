@@ -30,11 +30,11 @@ end
 
 % use switch instead of accessing muList as instructed
 switch m
-    case m==1
+    case 1
         mu = 0.2;
-    case m==2
+    case 2
         mu = 0.35;
-    case m==3
+    case 3
         mu = 0.4;
     otherwise
         mu = 0.7;
