@@ -1,5 +1,11 @@
-clear;clc;close all
+% Harry Choi 32464223
+% 23-Apr-2021
+% Lab 6 Task 2
+close all; clc; clear
+
+% import data
 nums = importdata('numbers.txt');
+
 % numbers ending in 3 or 7
 d3 = logical(mod(nums,10)==3);
 d7 = logical(mod(nums,10)==7);

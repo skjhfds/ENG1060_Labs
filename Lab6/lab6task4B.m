@@ -1,4 +1,7 @@
-clear; clc; close all
+% Harry Choi 32464223
+% 23-Apr-2021
+% Lab 6 Task 4 Step B
+close all; clc; clear
 
 % Step A
 T = 1;
