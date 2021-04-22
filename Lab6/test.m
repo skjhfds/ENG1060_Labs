@@ -1,12 +1,10 @@
 clear; clc; close all
 
-T = 1;
+n = 1:3;
+a = 1:4;
+ea = a'*ones(1,length(n));
+en = ones(length(a),1)*n;
 
-kMax = 5;
-domT = -1:0.0001:1;
+ea.^en
 
-k = 0:kMax;
-F = @(t) 4*t;
-testF = F(domT);
-
-plot(domT,testF,'-b')
+ea.^en*ones(length(n),1)
