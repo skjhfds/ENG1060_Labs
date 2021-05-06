@@ -1,0 +1,32 @@
+function [F, V, a0, a1, r2] = LinRegrSGR(x, y, n)
+%
+% [F, V, a0, a1, r2] = LinRegrSGR(x, y, n)
+% Written by: Harry Choi, 32464223
+% Created on 06-May-2021
+% The LinRegrSGR (linear regression of saturation growth rate) function
+% takes x and y arrays of values and index n
+% to find the line of best fit y = a0 + a1*x
+% 
+% Input arguments
+% -----------------
+%  x  array of x values
+%  y  array of corresponding y values
+%  n  a constant index of the saturation growth rate
+%
+% Output arguments
+% -----------------
+%  F  constant
+%  V  constant
+%  a0 constant
+%  a1 constant
+%  r2 coefficient of determination
+%
+p = polyfit(x^(-n), 1/y, 1);
+a0 = p(2);
+a1 = p(1);
+F = 1/a0;
+V = log(a1*F)/log(n);
+% linear r2
+
+
+
