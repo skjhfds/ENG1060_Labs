@@ -1,4 +1,5 @@
 #!/bin/sh
+cd /home/hcho/Documents/ENG1060/repo/ENG1060_Labs
 git pull
 git add .
 read -p "commit message:" msg
