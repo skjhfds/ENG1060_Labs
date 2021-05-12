@@ -6,6 +6,7 @@ function [F, V, a0, a1, r2] = LinRegrSGR(x, y, n)
 % The LinRegrSGR (linear regression of saturation growth rate) function
 % takes x and y arrays of values and index n
 % to find the line of best fit y = a0 + a1*x
+% No one knows why it starts with a capital letter
 % 
 % Input arguments
 % -----------------
@@ -29,6 +30,6 @@ a1 = p(1);
 F = 1/a0;
 V = (a1*F)^(1/n);
 % linear r2
-st = sum(ny - mean(ny));
+st = sum((ny - mean(ny)).^2);
 sr = sum((ny-(a0+a1*nx)).^2);
 r2 = (st-sr)/st;

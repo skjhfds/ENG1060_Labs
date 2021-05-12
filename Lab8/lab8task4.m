@@ -22,7 +22,7 @@ hold on
 f = @(x) (F*x.^n)./(V^n+x.^n);
 plot(domM, f(domM), '--b')
 % legend
-legend('a', 'interpolation', 'Location', 'south outside')
+legend('a', 'Interpolation/Extrapolation', 'Location', 'northwest')
 
 % print output
 fprintf('F  = %g\nV  = %g\na0 = %g\na1 = %g\nr2 = %g\n',[F, V, a0, a1, r2])

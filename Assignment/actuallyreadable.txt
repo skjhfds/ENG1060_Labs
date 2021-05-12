@@ -1,0 +1,84 @@
+ Ass: digging 4 gold
+========================================
+- 1 shovel load = 3L
+- 1 bucket = 18L = 6 shovel loads
+
+- start at 1000
+-   end at 1430
+- 30 minute eating sloth impression
+
+- 4 hour total
+
+ Site 1
+========================================
+- Hardcore mode.
+
+- Getting pick takes 40 minutes
+
+-  Hard Ground  -  Pick  - dig rate 1 shovel per 30 seconds
+-  Hard Ground  - Shovel - dig rate 1 shovel per 60 seconds
+
+- Sluice 20m away
+- Can only take 1 bucketful at a time
+- Can only move at 1 ms^-1 both ways
+
+- Gold content varies by depth
+- Limitless deposits
+
+- No tunnelling sideways from the bottom
+- Can only commit cardinal sin of MineCraft and dig straight down
+
+ Site 2
+========================================
+- Obligatory underwater level.
+
+- Loose Underwater - Shovel - dig rate 4 shovel per 1 minute
+
+- Sluice 10m away
+- Can only take 1 bucketful at a time
+- Can only move at 1 ms^-1 both ways
+
+- Gold content varies by distance from sluice
+- Limited deposits
+
+ Site 3
+========================================
+- Easy mode.
+
+- Loose Ground - Shovel - dig rate 1 shovel per 6 seconds
+
+- Sluice 0m away
+- Shovel directly into sluice
+
+- Gold content varies by depth
+- Limitless deposits
+
+- No tunnelling sideways from the bottom
+- Can only commit cardinal sin of MineCraft and dig straight down
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

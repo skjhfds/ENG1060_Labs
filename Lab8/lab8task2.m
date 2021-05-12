@@ -4,23 +4,28 @@
 close all; clc; clear
 
 % data
-anim = ["Cow","Human","Sheep","Hen","Rat","Dove"];
 mass = [400, 70, 45, 2, 0.3, 0.16];
 meta = [270, 82, 50, 4.8, 1.45, 0.97];
+
 % find equation
-p = polyfit(log(mass),log(meta),1);
-p(2) = exp(p(2));
-eq = "metabolism = (" + num2str(p(2)) + ")mass^(" + num2str(p(1)) + ")";
-% find r^2 change to linear one 0.9982
-st = sum((meta-mean(meta)).^2);
-r2 = (st-sum((meta-(p(2)*mass.^p(1))).^2))/st;
+x = log(mass);
+y = log(meta);
+p = polyfit(x,y,1);
+eq = "metabolism = " + num2str(exp(p(2))) + "*mass^{" + num2str(p(1)) + "}";
+% find r^2
+st = sum((y-mean(y)).^2);
+r2 = (st-sum((y-(p(2)+p(1)*x)).^2))/st;
+
 % plot data
-plot(mass, meta, 'bx')
+plot(mass, meta, 'rd')
+title(sprintf('%s',eq))
+xlabel('Mass (kg)')
+ylabel('Metabolism (Watts)')
 hold on
-domM = 0:0.1:max(mass);
-plot(domM, p(2)*domM.^p(1), '-r')
-
+domM = 0:1:500;
+ieData = exp(p(2))*domM.^p(1);
+plot(domM, ieData, '-b')
+plot(200, ieData(200), 'kd')
 % print output
-fprintf('Non-linear equation: %s\n          r^2 value: %4f\n',eq,r2)
-
-% tiger 159
+fprintf('Non-linear equation: %s\n          r^2 value: %4f\n\n',eq,r2)
+fprintf('Metabolic Rate of Tiger (200kg): %g Watts\n',ieData(200))

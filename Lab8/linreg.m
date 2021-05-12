@@ -17,6 +17,7 @@ function [a0,a1,r2] = linreg(x,y)
 %  a1 gradient of linear function of best fit
 %  r2 coefficient of determination
 %
+n = length(x);
 a1 = (n*sum(x.*y)-sum(x)*sum(y))/(n*sum(x.^2)-(sum(x))^2);
 a0 = mean(y)-a1*mean(x);
 st = sum((y-mean(y)).^2);

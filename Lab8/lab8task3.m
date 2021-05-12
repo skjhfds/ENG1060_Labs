@@ -35,4 +35,5 @@ plot(domxl, polyval(pxl, domxl),'-b')
 legend('y','7th order polyfit','3rd order polyfit for x<0','4th order polyfit for x>0','Location', 'best')
 
 % print output
-fprintf('For 3rd order, 4th order and 7th order polynomials, y = %.2f y = %.2f and y = %.2f at x=0 respectively.',[polyval(p,0), polyval(pxs,0), polyval(pxl,0)])
+% the task gave a terrible sample output so I made it mroe presentable
+fprintf('At x=0,\n3rd order polynomial: y = %g\n4th order polynomial: y = %g\n7th order polynomial: y = %g\n',[polyval(pxs,0), polyval(pxl,0), polyval(p,0)])
