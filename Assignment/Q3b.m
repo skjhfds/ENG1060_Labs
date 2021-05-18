@@ -1,8 +1,5 @@
 % Q3b
 
-% Some code may already be provided below
-% DO NOT clear, close or clc inside this script
-% Apply good programming practices
 %
 % Name :
 % ID   :

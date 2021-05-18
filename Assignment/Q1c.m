@@ -9,9 +9,17 @@ fprintf('\n Q1c \n\n')
 clc; %DELETE BEFORE SUBMITTING
 
 %% (i) Define equations
+dig_speed_p=
+total_time_p=12000;
+wading_time_p=
+
+dig_speed_np=
+total_time_np=14400;
+wading_time_np=
+
 %equation 1: number of buckets collected
-num_buckets_p=@(f_rate) (4*60*60-40*60)./(30*6+40+(6./f_rate)); %with pick
-num_buckets_np=@(f_rate) 4*60*60./(60*6+40+(6./f_rate)); %without pick
+num_buckets_p=@(f_rate) f_rate*(dig_speed_p*(total_time_p-wading_time_p))./(f_rate+num_shovels*dig_speed_p); %with pick
+num_buckets_np=@(f_rate) f_rate*(dig_speed_np*(total_time_np-wading_time_np))./(f_rate+num_shovels*dig_speed_np); %without pick
 
 %equation 2: amount of gold collected
 collected_gold_p=@(f_rate) avg_gold(2)*num_buckets_p(f_rate); 

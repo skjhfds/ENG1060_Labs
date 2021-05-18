@@ -94,9 +94,11 @@ for i8=2:length(x1b)
     end
 end
 
-method1b=strings([1,lG-1]);
+method1b=strings(1,lG+1);
+method1b(1)='method 1/method 3 (depth=7cm)';
+method1b(2)='method 2';
 for i = 2:lG
-    method1b(i-1) = sprintf('method 3 (depth=%gcm)',data1b(i,2));
+    method1b(i+1) = sprintf('method 3 (depth=%gcm)',data1b(i,2));
 end
 
 %% plotting
@@ -105,7 +107,7 @@ plot(x1b,y1b1,'--',x1b,y1b2,'--',x1b,y1b3)
 title('site 1: gold mass collected vs total digging time')
 xlabel('total digging time (shovel units)')
 ylabel('gold mass collected (grams)')
-legend('method 1/method 3 (depth=7cm)','method 2',method1b,'location','best outside')
+legend(method1b,'location','best outside')
 
 %% method breakdown per bucket
 num_shovels=6; %6 shovels per bucket
