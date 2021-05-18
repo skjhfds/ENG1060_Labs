@@ -9,47 +9,60 @@ fprintf('\n Q1c \n\n')
 clc; %DELETE BEFORE SUBMITTING
 
 %% (i) Define equations
-dig_speed_p=
-total_time_p=12000;
-wading_time_p=
 
-dig_speed_np=
-total_time_np=14400;
-wading_time_np=
-
+%% with pick
 %equation 1: number of buckets collected
-num_buckets_p=@(f_rate) f_rate*(dig_speed_p*(total_time_p-wading_time_p))./(f_rate+num_shovels*dig_speed_p); %with pick
-num_buckets_np=@(f_rate) f_rate*(dig_speed_np*(total_time_np-wading_time_np))./(f_rate+num_shovels*dig_speed_np); %without pick
+num_buckets_p=@(f_rate) 200./(3+(2/3)+(6./f_rate));
 
 %equation 2: amount of gold collected
 collected_gold_p=@(f_rate) avg_gold(2)*num_buckets_p(f_rate); 
-collected_gold_np=@(f_rate) avg_gold(2)*num_buckets_np(f_rate); 
 
 %equation 3: amount of gold recovered
-recovered_gold_p=@(f_rate) f0(f_rate)*60/100.*collected_gold_p(f_rate); 
-recovered_gold_np=@(f_rate) f0(f_rate)*60/100.*collected_gold_np(f_rate);
+recovered_gold_p=@(f_rate) sluice_recov(f_rate)/100.*collected_gold_p(f_rate); 
 
+%% without pick
+%equation 1: number of buckets collected
+num_buckets_np=@(f_rate) 240./(6+(2/3)+(6./f_rate));
+
+%equation 2: amount of gold collected
+collected_gold_np=@(f_rate) avg_gold(2)*num_buckets_np(f_rate);
+
+%equation 3: amount of gold recovered
+recovered_gold_np=@(f_rate) sluice_recov(f_rate)/100.*collected_gold_np(f_rate);
+
+%% printing
+dom1c=0:0.1:7;
+figure(4)
+plot(dom1c,recovered_gold_p(dom1c),dom1c,recovered_gold_np(dom1c))
+title('site 1: gold recovered vs sluice feed rate')
+xlabel('sluice feed rate (shovels/min)')
+ylabel('gold recovered (g)')
+legend('with pick','without pick','location','best')
+
+fprintf('From the graph, it can be seen that using a pick yields more gold.\n')
 fprintf('The equations used are:\n');
-fprintf('number of buckets (with pick) = @(f_rate) 12000/(220+(6/f_rate))\n');
-fprintf('number of buckets (without pick) = @(f_rate) 14400/(400+(6/f_rate))\n');
+fprintf('number of buckets = @(f_rate) 240/(6+(2/3)+6/f_rate)\n');
 fprintf('collected gold = @(f_rate) avg_gold(2)*number_of_buckets(f_rate)\n');
-fprintf('recovered gold = @(f_rate) f0(f_rate)*0.6*collected_gold(f_rate)\n');
+fprintf('recovered gold = @(f_rate) sluice_recov(f_rate)/100*collected_gold(f_rate)\n\n');
 
 %% (ii) Find maximum
 %with pick:
 %finding derivative of collected gold function
-%dGp_df=@(f_rate) avg_gold(2)*180./(110.*f_rate+3).^2;
+E=@(f_rate) exp(a0+a1.*f_rate);
+comp_1=@(f_rate) 1440*avg_gold(2)./((20/3+6./f_rate).^2.*(f_rate.^2).*(E(f_rate)+1));
+comp_2=@(f_rate) 240*avg_gold(2)*a1*E(f_rate)./((20/3)+(6./f_rate).*(E(f_rate)+1).^2);
+dG_df=@(f_rate) comp_1(f_rate)-comp_2(f_rate);
+
 %optimising the problem - finding where the derivative is zero
-%[root1c1,it]=modisecant(dGp_df,1,0.1,1e-10);
+[root1c,it]=modisecant(dG_df,1,0.1,1e-10);
 
-%without pick:
-%finding derivative of collected gold function
-%dGnp_df=@(f_rate) avg_gold(2)*
-%optimising the problem - finding where the derivative is zero
-%[root1c1,it]=modisecant(dGn_df,1,0.1,1e-10);
+fprintf('The ideal conditions are: using a pick, method 2, with a feed rate of %.2f shovels per minute\n\n',root1c);
 
-
-%fprintf('The ideal conditions are:\n');
 %% (iii) Determine final gold haul
+%defining equation for gold collected vs time
+final_num=num_buckets_p(root1c);
+final_collected=avg_gold(2)*final_num;
+final_recovered=sluice_recov(root1c)/100.*final_collected;
 
-%fprintf('The final weight of gold is:\n');
+fprintf('Having found the optimal feed rate, this value is then substituted into the function\n')
+fprintf('for gold recovery vs feed rate to find the final weight of gold: %.2fg\n\n',final_recovered)

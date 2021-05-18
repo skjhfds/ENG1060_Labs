@@ -12,8 +12,8 @@ spd=D(:,3); % shovels per deposit
 spb=6;      % shovels per bucket
 
 %% Plot weight of gold per bucket against position
-clf(figure(4))
-figure(4)
+clf(figure(5))
+figure(5)
 subplot(2,1,1)
 
 x = dfs;

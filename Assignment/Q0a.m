@@ -21,6 +21,6 @@ hold on
 %fitting appropriate function to data
 y0_new=log(100./y0-1);
 [a0,a1,r2]=linreg(x0,y0_new);
-sluice_recovery=@(x) 100./(1+exp(a1.*x+a0));
-plot(x0,sluice_recovery(x0),'r')
+sluice_recov=@(x) 100./(1+exp(a1.*x+a0));
+plot(x0,sluice_recov(x0),'r')
 legend('raw data','fitted curve (using tanh)','location','south outside')

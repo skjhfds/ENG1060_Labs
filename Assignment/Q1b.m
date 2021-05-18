@@ -10,7 +10,7 @@ fprintf('\n Q1b \n\n')
 
 data1b=importdata('Site1_depth_profile.csv').data; %importing data
 G1=data1b(:,3); %extracting gold column
-lG=length(G1);
+lG1=length(G1);
 
 su=240; %su = shovel units; setting a value
 x1b=0:su; %domain
@@ -31,73 +31,21 @@ end
 %% method 3: digging to a specific depth
 y1b3=zeros(7,length(x1b)); %pre-allocating
 
-%depth 2
-for i2=2:length(x1b)
-    if rem(i2-1,2)==0
-        y1b3(1,i2)=y1b3(1,i2-1)+G1(2);
-    else
-        y1b3(1,i2)=y1b3(1,i2-1);
+a=2:8;
+for i=2:length(x1b)
+    for b=1:7
+        if rem(i-1,a(b))==0
+           y1b3(b,i)=y1b3(b,i-1)+G1(a(b));
+        else
+           y1b3(b,i)=y1b3(b,i-1);
+    end
     end
 end
 
-%depth 3
-for i3=2:length(x1b)
-    if rem(i3-1,3)==0
-        y1b3(2,i3)=y1b3(2,i3-1)+G1(3);
-    else
-        y1b3(2,i3)=y1b3(2,i3-1);
-    end
-end
-
-%depth 4
-for i4=2:length(x1b)
-    if rem(i4-1,4)==0
-        y1b3(3,i4)=y1b3(3,i4-1)+G1(4);
-    else
-        y1b3(3,i4)=y1b3(3,i4-1);
-    end
-end
-
-%depth 5
-for i5=2:length(x1b)
-    if rem(i5-1,5)==0
-        y1b3(4,i5)=y1b3(4,i5-1)+G1(5);
-    else
-        y1b3(4,i5)=y1b3(4,i5-1);
-    end
-end
-
-%depth 6
-for i6=2:length(x1b)
-    if rem(i6-1,6)==0
-        y1b3(5,i6)=y1b3(5,i6-1)+G1(6);
-    else
-        y1b3(5,i6)=y1b3(5,i6-1);
-    end
-end
-
-%depth 7
-for i7=2:length(x1b)
-    if rem(i7-1,7)==0
-        y1b3(6,i7)=y1b3(6,i7-1)+G1(7);
-    else
-        y1b3(6,i7)=y1b3(6,i7-1);
-    end
-end
-
-%depth 8
-for i8=2:length(x1b)
-    if rem(i8-1,7)==0
-        y1b3(7,i8)=y1b3(7,i8-1)+G1(8);
-    else
-        y1b3(7,i8)=y1b3(7,i8-1);
-    end
-end
-
-method1b=strings(1,lG+1);
+method1b=strings(1,lG1+1);
 method1b(1)='method 1/method 3 (depth=7cm)';
 method1b(2)='method 2';
-for i = 2:lG
+for i = 2:lG1
     method1b(i+1) = sprintf('method 3 (depth=%gcm)',data1b(i,2));
 end
 
@@ -111,9 +59,9 @@ legend(method1b,'location','best outside')
 
 %% method breakdown per bucket
 num_shovels=6; %6 shovels per bucket
-method=strings([1,lG+1]);
+method=strings([1,lG1+1]);
 method(1:2)=["1,3(7cm)","2      "];
-avg_gold=zeros(1,lG+1);
+avg_gold=zeros(1,lG1+1);
 avg_gold(1)=num_shovels*G1(1);
 
 for k=1:4
@@ -121,9 +69,9 @@ for k=1:4
 end
 
 avg_gold(2)=sum(b)/4;
-avg_shovels=zeros(1,lG+1);
+avg_shovels=zeros(1,lG1+1);
 avg_shovels(1:2)=[6,6];
-for i=2:lG
+for i=2:lG1
     method(i+1)=sprintf('3(%gcm)',data1b(i,2));
     avg_gold(i+1)=num_shovels*G1(i);
     avg_shovels(i+1)=i*num_shovels;
