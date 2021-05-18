@@ -16,7 +16,7 @@ figure(2) %figure 2
 plot(x1a,y1a,'ko') %plotting raw data (weight of gold per shovel load as a function of depth)
 ylabel('weight of gold (g/shovel)')
 xlabel('depth from surface (cm)')
-title('weight of gold (g) per shovel as a function of depth (cm)')
+title('site 1: weight of gold (g) per shovel as a function of depth (cm)')
 hold on
 
 %fitting appropriate function to data

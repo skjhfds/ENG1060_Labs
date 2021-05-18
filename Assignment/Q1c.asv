@@ -1,0 +1,41 @@
+% Q1c
+
+% Name : Hannah Tay
+% ID   : 32521987
+% Date Modified : 13th May 2021
+
+fprintf('\n Q1c \n\n')
+
+clc; clear; %DELETE BEFORE SUBMITTING
+
+%% (i) Define equations
+%using a pick
+%equation 1: number of buckets collected
+time_sluice_p=@(f_rate) 6./f_rate;
+time_1bucket_p=@(time_sluice) 30*6+40+time_sluice;
+num_buckets_p=@(f_rate) (4*60*60-40*60)./time_1bucket_p;
+
+%equation 2: amount of gold collected
+collected_gold_p=@(f_rate) avg_gold(2)*num_buckets_p(f_rate);
+
+%equation 3: amount of gold recovered
+recovered_gold_p=@(f_rate) f0(f_rate)*60/100.*collected_gold_p(f_rate);
+
+%without using a pick
+%equation 1: number of buckets collected
+time_sluice_np=@(f_rate) 6./f_rate;
+
+
+
+fprintf('The equations used are:\n');
+fprintf('number of buckets = @(f_rate) 12000/(220+(6/f_rate))\n');
+fprintf('collected gold = @(f_rate) 0.0578*number_of_buckets (f_rate)\n');
+fprintf('recovered gold = @(f_rate) f0(f_rate)*0.6*collected_gold(f_rate)');
+
+%% (ii) Find maximum
+
+
+%fprintf('The ideal conditions are:\n');
+%% (iii) Determine final gold haul
+
+%fprintf('The final weight of gold is:\n');
