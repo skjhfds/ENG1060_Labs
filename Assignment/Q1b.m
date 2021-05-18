@@ -4,7 +4,7 @@
 % ID   : 32521987
 % Date Modified : 7th May 2021
 
-fprintf('\n Q1b \n\n')
+fprintf('\n Q1b\n===================================\n')
 
 %% defining variables
 
@@ -78,10 +78,10 @@ for i=2:lG1
 end
 
 %% printing
-fprintf('method breakdown per bucket\n')
-fprintf('method      avg gold (g)     avg shovel loads\n')
+fprintf('Method breakdown per bucket\n')
+fprintf('Method      Avg gold (g)     Avg shovel loads\n')
 fprintf('%-s%10.4f%13g\n',[method(1);avg_gold(1);avg_shovels(1)])
 fprintf('%-s%11.4f%13g\n',[method(2:end);avg_gold(2:end);avg_shovels(2:end)])
 
 fprintf('\nComment on Q1b: is there a maximum?\n');
-fprintf('Method 2 produces the highest yield of gold.\n');
+fprintf('Method 2 produces the highest yield of gold.\n\n');

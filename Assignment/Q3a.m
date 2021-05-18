@@ -5,17 +5,15 @@
 
 fprintf('\n  Q3a\n===================================\n')
 
-clc; %DELETE
-
 %% first subplot (data)
 data3=importdata('Site3_depth_profile.csv').data; %importing data
 G3=data3(:,3);
 D3=data3(:,2);
 
-[c0,c1,r2_3]=linreg(D3(2:end),log(G3(2:end))); %fitting a curve
-f3a=@(x) exp(c0).*exp(c1.*x);
+[d0,d1]=linreg(D3(2:end),log(G3(2:end))); %fitting a curve
+f3a=@(x) exp(d0).*exp(d1.*x);
 
-figure(6);
+figure(7) %figure 7
 subplot(2,1,1);
 plot(D3,G3,'--',D3,f3a(D3))
 title('site 3: weight of gold per shovel vs depth')
@@ -58,10 +56,10 @@ end
 
 %% second subplot (methods)
 subplot(2,1,2)
-plot(x3a,y3a1,'--',x3a,y3a2)
+plot(x3a,y3a1,x3a,y3a2)
 title('site 3: gold mass collected vs digging time')
 xlabel('digging time (shovels)')
 ylabel('total gold collected (g)')
 legend(method3a,'location','east outside')
 
-fprintf('The best strategy is method 1\n');
+fprintf('The best strategy is digging to every depth.\n\n');
