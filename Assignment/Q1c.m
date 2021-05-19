@@ -51,16 +51,17 @@ comp_1=@(f_rate) 1440*avg_gold(2)./((20/3+6./f_rate).^2.*(f_rate.^2).*(E(f_rate)
 comp_2=@(f_rate) 240*avg_gold(2)*a1*E(f_rate)./((20/3)+(6./f_rate).*(E(f_rate)+1).^2);
 dG_df=@(f_rate) comp_1(f_rate)-comp_2(f_rate);
 
-%optimising the problem - finding where the derivative is zero
+%optimising the problem: solving derivative = zero using modified secant
+%function file
 [root1c,it]=modisecant(dG_df,1,0.1,1e-10);
 
-fprintf('The ideal conditions are: using a pick, digging to every depth, with a feed rate of %.2f shovels per minute.\n\n',root1c);
+fprintf('The ideal conditions are: using a pick, digging to every depth, with a feed\nrate of %.2f shovels per minute.\n\n',root1c);
 
 %% (iii) Determine final gold haul
-%defining equation for gold collected vs time
+%substituting the above root into previous equations
 final_num=num_buckets_p(root1c);
 final_collected=avg_gold(2)*final_num;
 final_recovered=sluice_recov(root1c)/100.*final_collected;
 
-fprintf('Having found the optimal feed rate, this value is then substituted into the function.\n')
-fprintf('for gold recovery vs feed rate to find the final weight of gold: %.2fg.\n\n',final_recovered)
+fprintf('Having found the optimal feed rate, this value is then substituted into the function for\n')
+fprintf(' gold recovery vs feed rate to find the final weight of gold: %.2fg.\n\n',final_recovered)
