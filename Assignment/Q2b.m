@@ -36,4 +36,4 @@ time=@(f_rate) total_time(f_rate)-240;
 fprintf('The ideal conditions are: a feed rate of %.2f shovels/min, digging at every location.\n\n',root2b);
 
 %% (iii) Determine final gold haul
-fprintf('Given that we exhaust the gold content at every location of this site, the final gold haul is %.2fg.\n\n',sum(gw));
+fprintf('Given that we exhaust the gold content at every location of this site, the final gold haul is %.2fg.\n\n',sum(gw.*spd));
