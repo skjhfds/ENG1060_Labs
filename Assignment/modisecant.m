@@ -1,28 +1,35 @@
-function [root, iter] = modisecant(f,xi,pert, precision)
+function [root,iter] = modisecant(f,xi,pert,precision)
+
+%[root,iter] = modisecant(f,xi,pert,precision)
 %
-% [root, iter] = modisecant(f,xi,pert, precision)
-% Written by: Harry Choi, 32464223
-% Created on 30-Apr-2021
-% The modisecant function takes a function handle f,
-% initial guess for root, a small increment and a precision
-% to find a root of f to the precision
-% using the modified secant method
-% 
-% Input arguments
-% -----------------
-%  f         function handle of equation to find root of
-%  xi        initial guess for root
-%  pert      a small increment inexplicably named pert
-%  precision precision of root found
+%Created by Hannah Tay 32521987
+%Date created: 28th April 2021
 %
-% Output arguments
-% -----------------
-%  root root found
-%  iter number of iterations to find root to precision
+%finds the root of a given function by taking an initial point
+%xi and a small increment, and approximating the derivative as 
+%the slope of the line between the two points
 %
-iter = 0;
-while abs(f(xi)) > precision
-    iter = iter + 1;
-    xi = xi - f(xi)*pert/(f(xi+pert)-f(xi));
+%inputs: 
+%f - function handle
+%xi - initial guess
+%pert - increment
+%precision - accepted value of f
+%
+%outputs: 
+%root - root
+%iter - iterations required to find the root within the specified precision
+
+%function commands:
+iter=0;
+fxi=f(xi);
+mi=(f(xi+pert)-f(xi))/pert;
+
+while (abs(fxi))>precision
+    xi_new=xi-fxi/mi;
+    xi=xi_new;
+    fxi=f(xi);
+    mi=(f(xi+pert)-f(xi))/pert;
+    iter=iter+1;
 end
-root = xi;
+root=xi_new;
+end
