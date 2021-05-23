@@ -59,9 +59,9 @@ fprintf('The ideal conditions are: using a pick, digging to every depth, with a 
 
 %% (iii) Determine final gold haul
 %substituting the above root into previous equations
-final_num=num_buckets_p(root1c);
-final_collected=avg_gold(2)*final_num;
-final_recovered=sluice_recov(root1c)/100.*final_collected;
+final_num=num_buckets_p(root1c)
+final_collected=avg_gold(2)*final_num
+final_recovered=sluice_recov(root1c)/100.*final_collected
 
 fprintf('Having found the optimal feed rate, this value was then substituted into the\nfunction for ')
 fprintf('gold recovery vs feed rate to find the final weight of gold: %.2fg.\n\n',final_recovered)
