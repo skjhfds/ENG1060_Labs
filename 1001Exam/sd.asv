@@ -1,0 +1,7 @@
+clc; clear; close all
+a = [70, 65, 80, 60, 81, 59, 55, 71]
+average = mean(a)
+standardDeviation = std(a)
+load = sum(a)/6
+
+(average+standardDeviation)

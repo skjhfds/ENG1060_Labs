@@ -1,4 +1,4 @@
-function [t,y] = heun(dydt,tspan,y0,h)
+function I = heun(dydt,tspan,y0,h)
 %function [t,y] = heun(dydt,tspan,y0,h)
 %
 %Written by: Hannah Tay 32521987
@@ -28,11 +28,13 @@ if t(n)<tspan(2)
     t(n+1)=tspan(2);
     n=n+1;
 end
-
+I = [];
 %performing Heun's method
 y=y0*ones(n,1); %pre-allocating
 for i=1:n-1
     h=t(i+1)-t(i);
+    I(length(I)+1) = dydt(t(i),y(i));
     y1=y(i)+h*dydt(t(i),y(i));
     y(i+1)=y(i)+0.5*h*(dydt(t(i),y(i))+dydt(t(i+1),y1)); 
 end
+round(sum(I))

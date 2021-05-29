@@ -29,6 +29,7 @@ end
 %first guess for root can be as close to precision as f(xl)
 fRoot = fLower;
 iter = 0;
+i=0;
 while abs(fRoot) > precision
     iter = iter + 1;
     root = (fUpper*xl - fLower*xu)/(fUpper - fLower);
@@ -37,6 +38,7 @@ while abs(fRoot) > precision
         xl = root;
         fLower = fRoot;
     else
+        i= i+1
         xu = root;
         fUpper = fRoot;
     end
