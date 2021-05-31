@@ -31,4 +31,4 @@ fprintf('\n     simpleBeam()\n===============================')
 fprintf('\nDiagram:\n    ---%3g--->0\n             /|\\  %g(load)\n             / \\\n    =======================\n    A                     O\n    <--------%6g------->\n\n',x,l,L)
 fprintf('Equations:\n    moments from left end,\n    sum(M_z) = -%g*%g + %grr\n          rr = %g*%g/%g = %g\n    sum(F_y) = lr + %g -%g\n          lr = %g-%g = %g\n\n',l,x,L,l,x,L,rr,rr,l,l,rr,lr)
 
-fprintf(' Left Reaction: %g\nRight Reaction: %g',lr,rr)
+fprintf(' Left Reaction: %g\nRight Reaction: %g\n',lr,rr)
