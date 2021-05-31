@@ -15,6 +15,6 @@ function cL = characteristicLoad(a, area)
 m = mean(a);    % average mass
 sD = std(a);    % standard deviation of mass
 cM = m+1.65*sD; % characteristic mass
-cL = cM/area;   % characteristic load
-fprintf('  characteristicLoad()\n===============================')
-fprintf('\n       Average Mass: %g\n Standard Deviation: %g\nCharacteristic Mass: %g\nCharacteristic Load: %g\n',m,sD,cM,cL)
+cL = cM*length(a)/100/area;   % characteristic load
+fprintf('\n  characteristicLoad()\n===============================')
+fprintf('\n       Average Mass: %gkg\n Standard Deviation: %gkg\nCharacteristic Mass: %gkg\nCharacteristic Load: %gkPa\n',m,sD,cM,cL)

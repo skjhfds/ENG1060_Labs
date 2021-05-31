@@ -1,6 +1,5 @@
 clc; clear; close all
-a = [70, 65, 80, 60, 81, 59, 55, 71]
-characteristic = characteristicLoad(a,6);
-
-characteristic*1.5
-characteristic*0.7
+addpath(genpath('../1001Exam')); % load all folders
+dl=24*3*.2/3+40/100
+ll=10*3/3
+ULS(dl,ll)
