@@ -14,5 +14,5 @@ function A = yielding(F,y)
 
 A = F/y; %rearrange formula
 
-fprintf('yielding()=========================\n\n')
+fprintf('     yielding()\n=========================\n\n')
 fprintf('Equations:\n    %g <= A*%g\n    A >= %g mm^2\n',F,y,A)

@@ -15,5 +15,5 @@ function I = buckling(F,E,Le)
 
 I = F*Le^2/(E*3.1415^2); %rearrange formula
 
-fprintf('buckling()=========================\n\n')
+fprintf('    buckling()\n=========================\n\n')
 fprintf('Equations:\n    %g <= pi^2*%g*I / %g^2\n    I >= %g*%g^2 / pi^2*%g\n    I >= %g mm^4\n\n',F,E,Le,F,Le,E,I)

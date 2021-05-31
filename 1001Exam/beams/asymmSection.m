@@ -37,9 +37,9 @@ I = comp1+comp2;
 
 
 %printing equations
-fprintf('asymmSection()===================\n\n')
+fprintf('         asymmSection()\n================================\n\n')
 fprintf('Equations:\n    Area     y\n')
-fprintf('    %-5g    %-5g\n',A',y')
+fprintf('    %-5g    %-5g\n',[A y]')
 
 ycStr = sprintf("\n    yc = (%g*%g",A(1),y(1));
 for i=2:length
@@ -55,7 +55,7 @@ ycStr2 = ycStr2 + sprintf(") = %g\n",yc);
 
 fprintf(ycStr+ycStr2)
 
-iStr = "    I = ";
+iStr = "    I  = ";
 for i=1:length
     iStr = iStr + sprintf("(%g*%g)/12 + ",area(i,1),area(i,2));
 end
@@ -66,4 +66,4 @@ end
 iStr = iStr + sprintf("%g*%g*(%g)^2\n",area(end,1),area(end,2),s(end));
     
 fprintf(iStr)
-fprintf('    I = %g\n',I)
+fprintf('    I  = %g\n',I)
