@@ -107,4 +107,4 @@ fx = -w;
 fprintf('    sum(Fx) = fx  + w = 0\n         fx = %g',fx)
 
 f = [fx,fy];
-fprintf('\n\nReaction at foot: %gkN (horizontal)\n                  %gkN (vertical)\n Reaction at wall: %gkN\n',fx,fy,w)
+fprintf('\n\nReaction at foot: %gkN (horizontal)\n                  %gkN (vertical)\nReaction at wall: %gkN\n',fx,fy,w)
