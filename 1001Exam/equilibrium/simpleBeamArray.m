@@ -51,7 +51,7 @@ for i = 1:iMax
     end
     fprintf("-")
 end
-fprintf(">\n")
+fprintf(">\n\n")
 
 %taking moments at LR
 rr = sum(mx(:,1).*mx(:,2))/L;
