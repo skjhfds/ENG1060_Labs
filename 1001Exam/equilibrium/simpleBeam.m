@@ -1,6 +1,6 @@
-function [lr,rr]=simpleBeam(L,m,x)
+function [lr,rr]=simpleBeam(L,l,x)
 %
-% [lr,rr]=simpleBeam(l,m,x)
+% [lr,rr]=simpleBeam(L,l,x)
 % Takes the length of a simply supported beam,
 % mass of object on beam and distance from left support
 % to calculate the reactions in each support.
@@ -8,7 +8,7 @@ function [lr,rr]=simpleBeam(L,m,x)
 % Input arguments
 % -----------------
 %   L length of beam
-%   m mass of object on beam
+%   l load on beam (kN)
 %   x distance from left support
 % Output arguments
 % -----------------
@@ -16,10 +16,19 @@ function [lr,rr]=simpleBeam(L,m,x)
 %  rr right support reaction
 % 
 % ----x---->0
-%          /|\  m
+%          /|\  l
 %          / \
 % =======================
 % A                     O
-% <---------l----------->
+% <---------L----------->
 %
 
+% taking moments from left support
+rr = l*x/L;
+lr = l-rr;
+fprintf('\n     simpleBeam()\n===============================')
+% print diagram
+fprintf('\nDiagram:\n    ---%3g--->0\n             /|\\  %g(load)\n             / \\\n    =======================\n    A                     O\n    <--------%6g------->\n\n',x,l,L)
+fprintf('Equations:\n    moments from left end,\n    sum(M_z) = -%g*%g + %grr\n          rr = %g*%g/%g = %g\n    sum(F_y) = lr + %g -%g\n          lr = %g-%g = %g\n\n',l,x,L,l,x,L,rr,rr,l,l,rr,lr)
+
+fprintf(' Left Reaction: %g\nRight Reaction: %g',lr,rr)

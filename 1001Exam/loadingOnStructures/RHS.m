@@ -7,7 +7,7 @@ function sa = RHS(w,h,t)
 % Input arguments
 % -----------------
 %   w width
-%   h hieght
+%   h height
 %   t thickness
 % Output arguments
 % -----------------
@@ -16,4 +16,4 @@ function sa = RHS(w,h,t)
 sa = w*h - (w-2*t)*(h-2*t);
 fprintf('\n            RHS()\n===============================')
 fprintf('\nRHS %gx%gx%g',w,h,t)
-fprintf('\nSurface Area: %g\n',sa)
+fprintf('\nCross sectional Area: %g\n',sa)
