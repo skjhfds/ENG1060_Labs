@@ -1,4 +1,0 @@
-clc; clear; close all
-addpath(genpath('../1001Exam')); % load all folders
-
-simpleBeamArray(10,[20*5,2]);

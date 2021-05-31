@@ -14,7 +14,7 @@ function [lr,rr] = simpleBeamArray(L,mx)
 %  lr left support reaction
 %  rr right support reaction
 %
-
+fprintf('\n       simpleBeamArray()\n===============================\n')
 mx = sortrows(mx, 2);
 % Generate Diagram
 a = size(mx);
@@ -59,7 +59,7 @@ lr = sum(mx(:,1))-rr;
 
 %printing equations
 a=size(mx); 
-mzStr="sum(mz) = ";
+mzStr="    sum(mz) = ";
 
 for i=1:a(1)
     mzStr = mzStr + sprintf("-%g*%g ",mx(i,1),mx(i,2));
@@ -68,5 +68,5 @@ end
 mzStr=mzStr+sprintf("+ %g RR = 0",L);
 fprintf('Equations\nTaking moments from left end,\n')
 fprintf(mzStr)
-fprintf('\nRR = %g\nsum(F_y) = LR - %g + %g = 0\nLR = %g',rr,sum(mx(:,1)),rr,lr)
-fprintf('\n\nLeft Reaction: %g kN\nRight Reaction: %g kN\n',lr,rr)
+fprintf('\n         RR = %g\n   sum(F_y) = LR - %g + %g = 0\n         LR = %g',rr,sum(mx(:,1)),rr,lr)
+fprintf('\n\n Left Reaction: %gkN\nRight Reaction: %gkN\n',lr,rr)
