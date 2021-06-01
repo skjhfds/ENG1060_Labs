@@ -16,7 +16,7 @@ function [lr,rr] = simpleBeamArray(L,mx,my,mz)
 %  lr left support reactions
 %  rr right support reaction
 %
-fprintf('\n       beamArray()\n===============================\n')
+fprintf('\n       simpleBeamArray()\n===============================\n')
 if ~exist("my","var")
     my = [];
 end
