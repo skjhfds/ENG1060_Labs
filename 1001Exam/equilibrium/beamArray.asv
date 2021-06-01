@@ -8,12 +8,12 @@ function [lr,rr] = beamArray(L,mx,my,mz)
 % Input arguments
 % -----------------
 %   L  length of beam
-%   mx horizontal forces (column 1) and distances (column 2)
-%   my vertical forces (column 1) and distances (column 2)
-%   mz moments occuring along beam
+% - mx: horizontal forces (column 1) and distances (column 2)
+% - my: vertical forces (column 1) and distances (column 2)
+% - mz: moments occuring along beam
 % Output arguments
 % -----------------
-%  lr left support reactions
+%  lr left support reaction
 %  rr right support reaction
 %
 fprintf('\n       beamArray()\n===============================\n')
