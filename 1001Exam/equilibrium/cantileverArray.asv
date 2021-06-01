@@ -21,7 +21,7 @@ fprintf("  cantileverArray\n=============================\n")
 if isempty(mx)
     mx = [0,0];
 end
-if ~exist("my","var")||isempty(my)
+if ~exist("my","var")
     my = [0,0];
 end
 if ~exist("mz","var")
@@ -97,7 +97,7 @@ end
 fprintf(">\n\n")
 
 %start by taking moments at support
-m=sum(my(:,1).*my(:,2))+sum(mx(:,1).*mx(:,2))-sum(mz);
+m=sum(mx(:,1).*mx(:,2))+sum(mx(:,1).*mx(:,2))-sum(mz);
 v=sum(mx(:,1));
 h=sum(my(:,1));
 

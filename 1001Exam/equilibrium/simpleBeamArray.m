@@ -20,7 +20,7 @@ fprintf('\n       simpleBeamArray()\n===============================\n')
 if isempty(mx)
     mx = [0,0];
 end
-if ~exist("my","var")
+if ~exist("my","var")||isempty(my)
     my = [0,0];
 end
 if ~exist("mz","var")
