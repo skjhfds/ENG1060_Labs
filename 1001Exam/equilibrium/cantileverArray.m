@@ -61,7 +61,7 @@ fprintf(">\n\n")
 
 
 %printing equations
-a=size(mx)
+a=size(mx);
 mzStr="    sum(mz) = M ";
 
 for i=1:a(1)
