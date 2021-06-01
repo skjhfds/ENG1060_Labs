@@ -1,5 +1,5 @@
-function [f,h] = resultantBeamArray(L,mx,my,mz)
-% function [lr,rr] = resultantBeamArray(L,mx,my,mz)
+function [f,h] = resultantBeamArray(mx,my,mz)
+% function [lr,rr] = resultantBeamArray(mx,my,mz)
 %
 % Takes the length of a simply supported beam,
 % matrix of loads and distances from the left support on a beam
@@ -7,7 +7,6 @@ function [f,h] = resultantBeamArray(L,mx,my,mz)
 %
 % Input arguments
 % -----------------
-%   L  length of beam
 %   mx vertical forces (column 1) and distances (column 2)
 %   my horizontal forces (column 1) and distances (column 2)
 %   mz moments occuring along beam
@@ -87,16 +86,7 @@ fprintf("\n    A")
 for i = 1:strlength(d)
     fprintf(" ")
 end
-fprintf("O\n    <")
-iMax = strlength(d(1))-length(num2str(L));
-for i = 1:iMax
-    if i == round(iMax/2)
-        fprintf(L+"m")
-        continue
-    end
-    fprintf("-")
-end
-fprintf(">\n\n")
+fprintf("O\n")
 if ~isempty(mz)
     fprintf('        (Q is anticlockwise)\n\n')
 end
