@@ -132,7 +132,6 @@ fprintf('\n         RR = %g\n   sum(F_y) = LRy - %g + %g = 0\n        LRy = %g\n
 fprintf('\n\n Left Reaction: ')
 if lrx == 0
     fprintf('%gkN\n',lry)
-else
-    fprintf('%gkN (horizontal)\n                %gkN (vertical)\n',lr)
 end
+%gkN (horizontal)\n                %gkN (vertical)\n')
 fprintf('Right Reaction: %gkN\n',rr)
