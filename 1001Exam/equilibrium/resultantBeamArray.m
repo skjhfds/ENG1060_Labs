@@ -1,9 +1,9 @@
-function [lr,rr] = simpleBeamArray(L,mx,my,mz)
-% function [lr,rr] = simpleBeamArray(L,mx,my,mz)
+function [f,h] = resultantBeamArray(L,mx,my,mz)
+% function [lr,rr] = resultantBeamArray(L,mx,my,mz)
 %
 % Takes the length of a simply supported beam,
 % matrix of loads and distances from the left support on a beam
-% to calculate the reactions at both ends.
+% to calculate the resultant force and location.
 %
 % Input arguments
 % -----------------
@@ -13,10 +13,10 @@ function [lr,rr] = simpleBeamArray(L,mx,my,mz)
 %   mz moments occuring along beam
 % Output arguments
 % -----------------
-%  lr left support reactions
-%  rr right support reaction
+%  f magnitude of resultant force
+%  h distance of resultant force from left
 %
-fprintf('\n       simpleBeamArray()\n===============================\n')
+fprintf('\n       resultantBeamArray()\n===============================\n')
 if isempty(mx)
     mx = [0,0];
 end
@@ -102,18 +102,21 @@ if ~isempty(mz)
 end
 
 %taking moments at LR
-rr = (sum(mx(:,1).*mx(:,2)) + sum(my(:,1).*my(:,2)) + sum(mz))/L;
-lry = sum(mx(:,1))-rr;
-lrx = -sum(my(:,1));
-lr = [lrx, lry];
-
+fy = sum(mx(:,1));
+fprintf("Equations:\n")
+h = (sum(mx(:,1).*mx(:,2)) + sum(my(:,1).*my(:,2)) + sum(mz))/fy;
 %printing equations
+fprintf('    sum(fy) =')
 a=size(mx); 
 mzStr="    sum(mz) = ";
 for i=1:a(1)
     if mx(i) == 0
         continue
     end
+    if i ~= 1
+        fprintf(' +')
+    end
+    fprintf(' %g',mx(i))
     mzStr = mzStr + sprintf("-%g*%g ",mx(i,1),mx(i,2));
 end
 a=size(my);
@@ -128,14 +131,8 @@ for i=1:a(1)
     mzStr = mzStr + sprintf("-%g ",mz(i));
 end
 
-mzStr=mzStr+sprintf("+ %g RR = 0",L);
-fprintf('Equations:\nTaking moments from left end,\n')
+mzStr=mzStr+sprintf("= -%g h",fy);
+fprintf(' = %g\nTaking moments from left end,\n',fy)
 fprintf(mzStr)
-fprintf('\n         RR = %g\n   sum(F_y) = LRy - %g + %g = 0\n        LRy = %g\n   sum(F_x) = LRx + %g = 0\n        LRx = %g',rr,sum(mx(:,1)),rr,lry,sum(my(:,1)), lrx)
-fprintf('\n\n Left Reaction: ')
-if lrx == 0
-    fprintf('%gkN\n',lry)
-else
-    fprintf('%gkN (horizontal)\n                %gkN (vertical)\n',lr)
-end
-fprintf('Right Reaction: %gkN\n',rr)
+fprintf('\n          h = %g',h)
+fprintf("\n\n    %gkN down %gm from the left\n",fy,h)
