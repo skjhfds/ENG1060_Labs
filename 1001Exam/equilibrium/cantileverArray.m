@@ -70,8 +70,9 @@ end
 mzStr = mzStr+"= 0\n";
 
 for i=1:a(1)
-    rStr = sprintf("-%g \n",mx(i,1));
+    rStr = sprintf("-%g ",mx(i,1));
 end
+rStr = rStr + "= 0\n";
 
 fprintf('Equations:\n    Taking moments at the support,\n')
 fprintf(mzStr)
