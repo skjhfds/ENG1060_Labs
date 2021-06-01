@@ -1,8 +1,8 @@
 function [r,m] = cantileverArray(L,mx)
 %function r = cantilever(L,mx)
 %
-%takes the length of a cantilever, point load on beam,
-%and distance from support to calculate the vertical reaction 
+%takes the length of a cantilever, vertical point loads on beam,
+%and distances from support to calculate the vertical reaction 
 %force and the moment at the support
 %
 %inputs:
