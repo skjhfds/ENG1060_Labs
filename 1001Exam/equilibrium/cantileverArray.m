@@ -95,6 +95,9 @@ for i = 1:iMax
     fprintf("-")
 end
 fprintf(">\n\n")
+if ~isempty(mz)
+    fprintf('        (Q is anticlockwise)\n\n')
+end
 
 %start by taking moments at support
 m=sum(my(:,1).*my(:,2))+sum(mx(:,1).*mx(:,2))-sum(mz);

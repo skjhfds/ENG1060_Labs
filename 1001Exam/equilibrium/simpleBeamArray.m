@@ -97,6 +97,9 @@ for i = 1:iMax
     fprintf("-")
 end
 fprintf(">\n\n")
+if ~isempty(mz)
+    fprintf('        (Q is anticlockwise)\n\n')
+end
 
 %taking moments at LR
 rr = (sum(mx(:,1).*mx(:,2)) + sum(my(:,1).*my(:,2)) + sum(mz))/L;
