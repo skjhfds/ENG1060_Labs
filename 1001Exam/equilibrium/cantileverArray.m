@@ -1,55 +1,77 @@
-function [r,m] = cantileverArray(L,mx)
-%function r = cantilever(L,mx)
+function [h,v,m] = cantileverArray(L,mx,my,mz)
+%function [h,v,m] = cantileverArray(L,mx,my,mz)
 %
-%takes the length of a cantilever, vertical point loads on beam,
-%and distances from support to calculate the vertical reaction 
-%force and the moment at the support
+%takes the length of a cantilever, horizontal and vertical forces 
+%and their respective distances from the support, as well as
+%moments along the beam, and calculates the internal moment, vertical,
+%and horizontal reaction forces
 %
 %inputs:
 % - L: length of the beam
-% - mx: matrix with column 1 loads, column 2 distance from support
+% - mx: horizontal forces (column 1) and distances (column 2)
+% - my: vertical forces (column 1) and distances (column 2)
+% - mz: moments occuring along beam
 %
 %outputs:
-% - r: vertical support reaction
-% - m: moment
+% - h: horizontal reaction
+% - v: vertical reaction
+% - m: reaction moment
 
-%taking moments at the support
-m=sum(mx(:,1).*mx(:,2));
-r=sum(mx(:,1));
-
-fprintf('cantilever()======================\n\n')
-
-
-%printing diagram
-mx = sortrows(mx, 2);
-a = size(mx);
-d = [""];
-fprintf("Diagram:\n")
-for i = 1:a(1)
-    row = "    --";
-    if i > 1
-        for j = 1:strlength(d(1))-length(num2str(mx(i,2)))-10
-            row = row + "-";
-        end
-    end
-    row = row + mx(i,2) + "m-->";
-    if i ~= 1
-        row = row + "\n";
-    end
-    d(i) = row;
-    d(1) = d(1) + mx(i,1) + "kN    ";
+fprintf("  cantileverArray\n=============================\n")
+if ~exist("my","var")
+    my = [];
 end
-fprintf(strjoin(fliplr(d),"")+"\n    ")
-fprintf("|")
-for i = 1:strlength(d(1))-3
+if ~exist("mz","var")
+    mz = [];
+end
+% Generate Diagram
+a = size(mx);
+d0 = [""]; d1 = [""];
+fprintf("Diagram:\n    ||  ")
+% vertical load
+for i = 1:a(1)
+    d1(i) = "V " + mx(i)+"kN ";
+end
+% vertical distance
+for i = 1:a(1)
+    d0(i) = "| " + mx(i,2)+"m";
+end
+
+% horizontal load
+a = size(my);
+aa = length(d1);
+for i = 1:a(1)
+    d1(i+aa) = "--> " + my(i)+"kN ";
+end
+% horizontal distance
+for i = 1:a(1)
+    d0(i+aa) = "    " + my(i,2)+"m";
+end
+
+% match distances, d0 and d1
+for i = 1:length(d0)
+    while strlength(d0(i)) > strlength(d1(i))
+        d1(i) = d1(i) + " ";
+    end
+    while strlength(d0(i)) < strlength(d1(i))
+        d0(i) = d0(i) + " ";
+    end
+end
+
+d = strjoin(d1);
+% moments
+a = size(mz);
+for i = 1:a(1)
+    d = d + " Q " + mz(i)+"kN    ";
+end
+fprintf(strjoin(d0) + "\n    ||  ")
+fprintf(d+"\n    ||")
+for i = 1:strlength(d)+2
     fprintf("=")
 end
-fprintf("\n    A")
-for i = 1:strlength(d(1))-4
-    fprintf(" ")
-end
-fprintf(" \n    <")
-iMax = strlength(d(1))-4-length(num2str(L));
+fprintf("\n    ||")
+fprintf("<")
+iMax = strlength(d(1))-length(num2str(L));
 for i = 1:iMax
     if i == round(iMax/2)
         fprintf(L+"m")
@@ -59,24 +81,50 @@ for i = 1:iMax
 end
 fprintf(">\n\n")
 
+%start by taking moments at support
+m=sum(mx(:,1).*mx(:,2))+sum(my(:,1).*my(:,2))-sum(mz);
+v=sum(my(:,1));
+h=sum(mx(:,1));
 
 %printing equations
-a=size(mx);
-mzStr="    sum(mz) = M ";
+mzStr = "     sum(mz) = M ";
 
+a=size(mx); 
 for i=1:a(1)
     mzStr = mzStr + sprintf("-%g*%g ",mx(i,1),mx(i,2));
 end
-mzStr = mzStr+"= 0\n";
 
-rStr = "";
-for i=1:a(1)
-    rStr = rStr + sprintf("-%g ",mx(i,1));
+b=size(my);
+for i=1:b(1)
+    mzStr = mzStr + sprintf("-%g*%g ",my(i,1),my(i,2));
 end
-rStr = rStr + "= 0\n";
 
-fprintf('Equations:\n    Taking moments at the support,\n')
+c=size(mz);
+for i=1:c(1)
+    mzStr = mzStr + sprintf("+ %g",mz(i));
+end
+mzStr = mzStr + " = 0\n";
+
+fprintf("Equations:\n    Taking moments at the support,\n")
 fprintf(mzStr)
-fprintf('    M = %g kN\n    sum(F_y) = R ',m)
-fprintf(rStr)
-fprintf('    R = %g kN\n',r)
+fprintf("           M = %g kNm\n",m)
+
+vStr = "    sum(F_y) = V";
+for i=1:b(1)
+    vStr = vStr + sprintf(" - %g",my(i,1));
+end
+vStr = vStr + " = 0\n";
+
+fprintf(vStr)
+fprintf("           V = %g kN\n",v)
+
+hStr = "    sum(F_x) = H";
+for i=1:a(1)
+    hStr = hStr + sprintf(" - %g",mx(i,1));
+end
+hStr = hStr + " = 0\n";
+
+fprintf(hStr)
+fprintf("           H = %g kN\n",h)
+
+fprintf("\nHorizontal Reaction: %gkN\n  Vertical Reaction: %gkN\n    Reaction Moment: %gkN",h,v,m)

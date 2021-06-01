@@ -17,8 +17,11 @@ function [lr,rr] = simpleBeamArray(L,mx,my,mz)
 %  rr right support reaction
 %
 fprintf('\n       simpleBeamArray()\n===============================\n')
+if isempty(mx)
+    mx = [0,0];
+end
 if ~exist("my","var")
-    my = [];
+    my = [0,0];
 end
 if ~exist("mz","var")
     mz = [];
@@ -29,10 +32,16 @@ d0 = [""]; d1 = [""];
 fprintf("Diagram:\n      ")
 % vertical load
 for i = 1:a(1)
-    d1(i) = "V " + mx(i)+"kN ";
+    if mx(i) == 0
+        continue
+    end
+    d1(i) = "V " + mx(i)+"kN  ";
 end
 % vertical distance
 for i = 1:a(1)
+    if mx(i) == 0
+        continue
+    end
     d0(i) = "| " + mx(i,2)+"m";
 end
 
@@ -40,10 +49,16 @@ end
 a = size(my);
 aa = length(d1);
 for i = 1:a(1)
-    d1(i+aa) = "--> " + my(i)+"kN ";
+    if my(i) == 0
+        continue
+    end
+    d1(i+aa) = "--> " + my(i)+"kN  ";
 end
 % horizontal distance
 for i = 1:a(1)
+    if my(i) == 0
+        continue
+    end
     d0(i+aa) = "    " + my(i,2)+"m";
 end
 
@@ -93,10 +108,16 @@ lr = [lrx, lry];
 a=size(mx); 
 mzStr="    sum(mz) = ";
 for i=1:a(1)
+    if mx(i) == 0
+        continue
+    end
     mzStr = mzStr + sprintf("-%g*%g ",mx(i,1),mx(i,2));
 end
 a=size(my);
 for i=1:a(1)
+    if my(i) == 0
+        continue
+    end
     mzStr = mzStr + sprintf("-%g*%g ",my(i,1),my(i,2));
 end
 a=size(mz);
