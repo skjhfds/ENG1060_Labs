@@ -8,8 +8,8 @@ function [h,v,m] = cantileverArray(L,mx,my,mz)
 %
 %inputs:
 % - L: length of the beam
-% - mx: horizontal forces (column 1) and distances (column 2)
-% - my: vertical forces (column 1) and distances (column 2)
+% - mx: vertical forces (column 1) and distances (column 2)
+% - my: horizontal forces (column 1) and distances (column 2)
 % - mz: moments occuring along beam
 %
 %outputs:
@@ -18,8 +18,11 @@ function [h,v,m] = cantileverArray(L,mx,my,mz)
 % - m: reaction moment
 
 fprintf("  cantileverArray\n=============================\n")
+if isempty(mx)
+    mx = [0,0];
+end
 if ~exist("my","var")
-    my = [];
+    my = [0,0];
 end
 if ~exist("mz","var")
     mz = [];
@@ -30,10 +33,16 @@ d0 = [""]; d1 = [""];
 fprintf("Diagram:\n    ||  ")
 % vertical load
 for i = 1:a(1)
+    if mx(i) == 0
+        continue
+    end
     d1(i) = "V " + mx(i)+"kN ";
 end
 % vertical distance
 for i = 1:a(1)
+    if mx(i) == 0
+        continue
+    end
     d0(i) = "| " + mx(i,2)+"m";
 end
 
@@ -41,10 +50,16 @@ end
 a = size(my);
 aa = length(d1);
 for i = 1:a(1)
+    if my(i) == 0
+        continue
+    end
     d1(i+aa) = "--> " + my(i)+"kN ";
 end
 % horizontal distance
 for i = 1:a(1)
+    if my(i) == 0
+        continue
+    end
     d0(i+aa) = "    " + my(i,2)+"m";
 end
 
@@ -82,20 +97,26 @@ end
 fprintf(">\n\n")
 
 %start by taking moments at support
-m=sum(mx(:,1).*mx(:,2))+sum(my(:,1).*my(:,2))-sum(mz);
-v=sum(my(:,1));
-h=sum(mx(:,1));
+m=sum(my(:,1).*my(:,2))+sum(mx(:,1).*mx(:,2))-sum(mz);
+v=sum(mx(:,1));
+h=sum(my(:,1));
 
 %printing equations
 mzStr = "     sum(mz) = M ";
 
 a=size(mx); 
 for i=1:a(1)
+    if mx(i) == 0
+        continue
+    end
     mzStr = mzStr + sprintf("-%g*%g ",mx(i,1),mx(i,2));
 end
 
 b=size(my);
 for i=1:b(1)
+    if my(i) == 0
+        continue
+    end
     mzStr = mzStr + sprintf("-%g*%g ",my(i,1),my(i,2));
 end
 
@@ -103,7 +124,7 @@ c=size(mz);
 for i=1:c(1)
     mzStr = mzStr + sprintf("+ %g",mz(i));
 end
-mzStr = mzStr + " = 0\n";
+mzStr = mzStr + "= 0\n";
 
 fprintf("Equations:\n    Taking moments at the support,\n")
 fprintf(mzStr)
@@ -111,7 +132,10 @@ fprintf("           M = %g kNm\n",m)
 
 vStr = "    sum(F_y) = V";
 for i=1:b(1)
-    vStr = vStr + sprintf(" - %g",my(i,1));
+    if mx(i) == 0
+        continue
+    end
+    vStr = vStr + sprintf(" - %g",mx(i,1));
 end
 vStr = vStr + " = 0\n";
 
@@ -120,7 +144,10 @@ fprintf("           V = %g kN\n",v)
 
 hStr = "    sum(F_x) = H";
 for i=1:a(1)
-    hStr = hStr + sprintf(" - %g",mx(i,1));
+    if my(i) == 0
+        continue
+    end
+    hStr = hStr + sprintf(" - %g",my(i,1));
 end
 hStr = hStr + " = 0\n";
 

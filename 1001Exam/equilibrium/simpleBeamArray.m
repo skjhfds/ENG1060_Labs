@@ -8,8 +8,8 @@ function [lr,rr] = simpleBeamArray(L,mx,my,mz)
 % Input arguments
 % -----------------
 %   L  length of beam
-%   mx horizontal forces (column 1) and distances (column 2)
-%   my vertical forces (column 1) and distances (column 2)
+%   mx vertical forces (column 1) and distances (column 2)
+%   my horizontal forces (column 1) and distances (column 2)
 %   mz moments occuring along beam
 % Output arguments
 % -----------------
