@@ -1,4 +1,5 @@
 clc; clear; close all;
 addpath(genpath('../1001Exam')); % load all folders
 
-[x,y]=forces([16.7 60.3;-5.2 32.1;17.7 77.4],[16.7 60.3;5.2 32.1; -17.7 77.4]);
+I=3.1415*35^4/4;
+F=bucklingLoad(70000,I,6000);
