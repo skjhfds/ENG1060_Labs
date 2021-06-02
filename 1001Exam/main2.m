@@ -1,4 +1,4 @@
 clc; clear; close all;
 addpath(genpath('../1001Exam')); % load all folders
 
-cantileverArray2(10,[0,0],[10,10;50,2.5],[20]);
+[x,y]=forces([16.7 60.3;-5.2 32.1;17.7 77.4],[16.7 60.3;5.2 32.1; -17.7 77.4]);
