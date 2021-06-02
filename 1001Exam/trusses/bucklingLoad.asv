@@ -1,9 +1,0 @@
-function F = bucklingLoad(E,I,L)
-%function F = bucklingLoad()
-%
-%takes the Young's modulus, second moment of area, and effective length
-%and calculates the buckling load (force)
-
-
-
-F = 3.1415^2*E*I/(L^2);
