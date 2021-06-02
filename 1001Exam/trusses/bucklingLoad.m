@@ -15,5 +15,5 @@ function F = bucklingLoad(E,I,L)
 F = 3.1415^2*E*I/(L^2);
 
 %printing 
-fprintf('   bucklingLoad()\n===================\nEquations:\n')
-fprintf('    F = pi^2 * %g * %g / (%g)^2\n    F = %g kN\n',E,I,L,F/1000)
+fprintf('   bucklingLoad()\n====================\nEquations:\n')
+fprintf('    F = pi^2 * %g * %.2f / (%g)^2\n    F = %g kN\n',E,I,L,F/1000)
