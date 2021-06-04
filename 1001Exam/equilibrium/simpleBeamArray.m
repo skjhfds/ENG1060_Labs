@@ -102,7 +102,7 @@ if ~isempty(mz)
 end
 
 %taking moments at LR
-rr = (sum(mx(:,1).*mx(:,2)) + sum(my(:,1).*my(:,2)) + sum(mz))/L;
+rr = (sum(mx(:,1).*mx(:,2)) + sum(my(:,1).*my(:,2)) - sum(mz))/L;
 lry = sum(mx(:,1))-rr;
 lrx = -sum(my(:,1));
 lr = [lrx, lry];

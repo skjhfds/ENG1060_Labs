@@ -1,4 +1,4 @@
 clc; clear; close all;
 addpath(genpath('../1001Exam')); % load all folders
 
-bucklingLoad(8000,39572,1414);
+simpleBeamArray(16,[20*8,4;-180,8;160,11],[0 0],-204);
