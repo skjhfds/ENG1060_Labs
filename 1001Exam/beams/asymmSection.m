@@ -57,7 +57,7 @@ fprintf(ycStr+ycStr2)
 
 iStr = "    I  = ";
 for i=1:length
-    iStr = iStr + sprintf("(%g*%g)/12 + ",area(i,1),area(i,2));
+    iStr = iStr + sprintf("(%g*%g^3)/12 + ",area(i,1),area(i,2));
 end
 
 for i=1:length-1
