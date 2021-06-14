@@ -1,4 +1,4 @@
-function I = heun(dydt,tspan,y0,h)
+function [t,y] = heun(dydt,tspan,y0,h)
 %function [t,y] = heun(dydt,tspan,y0,h)
 %
 %Written by: Hannah Tay 32521987
