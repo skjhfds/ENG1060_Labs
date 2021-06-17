@@ -1,5 +1,5 @@
-function A = yielding(F,y)
-%function A = yielding(F,y)
+function A = yieldingArea(F,y)
+%function A = yieldingArea(F,y)
 %
 %takes the desired applied force on a member and the 
 %yield stress of a material and calculates the minimum 
@@ -14,5 +14,5 @@ function A = yielding(F,y)
 
 A = F/y; %rearrange formula
 
-fprintf('     yielding()\n=========================\n\n')
+fprintf('     yieldingArea()\n=========================\n\n')
 fprintf('Equations:\n    %g <= A*%g\n    A >= %g mm^2\n',F,y,A)

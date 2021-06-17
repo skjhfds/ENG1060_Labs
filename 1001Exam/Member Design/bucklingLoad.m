@@ -12,7 +12,7 @@ function F = bucklingLoad(E,I,L)
 %outputs:
 % - F: buckling load
 
-F = 3.1415^2*E*I/(L^2);
+F = pi()^2*E*I/(L^2);
 
 %printing 
 fprintf('   bucklingLoad()\n====================\nEquations:\n')
