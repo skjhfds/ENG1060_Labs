@@ -37,4 +37,4 @@ for i=1:n-1
     y1=y(i)+h*dydt(t(i),y(i));
     y(i+1)=y(i)+0.5*h*(dydt(t(i),y(i))+dydt(t(i+1),y1)); 
 end
-round(sum(I))
+round(sum(I));

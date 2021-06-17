@@ -1,0 +1,7 @@
+n = size of matrix (n x n)	Number of steps taken
+2	11
+3	37
+4	102
+5	197
+6	334
+7	521

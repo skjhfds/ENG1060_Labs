@@ -100,12 +100,12 @@ clc; clear; close all
 
 % polyval(p,25)
 %% sec 8
-t = 0:8;
-v = [0;4;8;10;11;11.5;11.8;11.9;12];
-g= 9.81;
-m = 100;
-c = 25;
-vt = @(t) g*m/c*(1-exp(-c/m*t));
+% t = 0:8;
+% v = [0;4;8;10;11;11.5;11.8;11.9;12];
+% g= 9.81;
+% m = 100;
+% c = 25;
+% vt = @(t) g*m/c*(1-exp(-c/m*t));
 % % % % d = @(t) integral(vt,0,t);
 % % % comp_trap(vt,0,8,3)
 % % % 
@@ -131,7 +131,7 @@ vt = @(t) g*m/c*(1-exp(-c/m*t));
 
 
 %% sec 9
-% dydt = @(x,y) (1+0.5*x)/sqrt(2*y);
+dydt = @(x,y) (1+0.5*x)/sqrt(2*y);
 % % [t,y] = euler(dydt,[0,2],1,0.2)
 % [t,y] =midpoint(dydt,[0,2],1,0.2)
 % [t,y] = heun(dydt,[0,2],1,0.2)
@@ -142,6 +142,17 @@ vt = @(t) g*m/c*(1-exp(-c/m*t));
 %     y_t50(i) = y(length(y));
 % end
 % sum(y_t50)
+y0=1;
+h=0.2;
+t=0; y=y0;
+dy_dt=dydt(t,y);
+while dy_dt<1.5 
+    t=t+h;
+    y1=y+h*dydt(t-h,y);
+    y=y+0.5*h*(dydt(t-h,y)+dydt(t,y1)); 
+    dy_dt=dydt(t,y);
+end
+fprintf('heun\n time when dy/dt is first greater than 1.5: %.4f\n corresponding y value: %.4f\n',t,y)
 %% test
 % G = [4, 7, 31, 14]
 % % G.data(3)

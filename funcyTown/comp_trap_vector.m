@@ -12,15 +12,20 @@ function I = comp_trap_vector(x,y)
 %y - y-values of data set
 
 %defining variables
-n=length(x);
-h=x(2)-x(1);
+% n=length(x);
+% h=x(2)-x(1);
 
 %check if segment sizes are equal
-for i=2:n-1
-    if x(i+1)-x(i) ~= h
-        error('entries in vector x must be equally spaced!')
-    end
-end
+% for i=2:n-1
+%     if x(i+1)-x(i) ~= h
+%         error('entries in vector x must be equally spaced!')
+%     end
+% end
 
 %calculating I
-I=y(1)+2*sum(y(2:end-1))+y(end);
+% I=y(1)+2*sum(y(2:end-1))+y(end);
+
+I = 0;
+for i = length(x)-1
+    I = I + 1/2 * (x(i+1) - x(i)) * (y(i) + y(i+1));
+end

@@ -1,5 +1,5 @@
-function I = beamDesign(M,y,s)
-%function I = beamDesign(M,y,s)
+function I = beamBendingI(M,y,s)
+%function I = beamBendingI(M,y,s)
 %
 %takes the desired internal moment in the beam, bending stress,
 %and distance from the neutral axis and calculates the required 
@@ -15,5 +15,5 @@ function I = beamDesign(M,y,s)
 
 I = M*y/s; %rearrange formula
 
-fprintf('beamDesign()===================\n')
-fprintf('Equations:\n    %g = %g*%g / I\n    I = %g*%g / %g\n    I = %g mm^4\n',s,M,y,M,y,s,I)
+fprintf(' beamBendingI()n\======================\n')
+fprintf('Equations:\n    \x03c3 = My/I\n\n    %g = %g*%g / I\n    I = %g*%g / %g\n    I = %g mm^4\n',s,M,y,M,y,s,I)
