@@ -1,5 +1,5 @@
-function I = beamBendingI(M,y,s)
-%function I = beamBendingI(M,y,s)
+function y = DistFromNeutral(M,I,s)
+%function I = DistFromNeutral(M,y,s)
 %
 %takes the desired internal moment in the beam, bending stress,
 %and distance from the neutral axis and calculates the required 
@@ -13,7 +13,7 @@ function I = beamBendingI(M,y,s)
 %outputs:
 % - I: second moment of area (mm^4)
 
-I = M*y/s; %rearrange formula
+y = s*I/M; %rearrange formula
 
-fprintf(' beamBendingI()n\======================\n')
-fprintf('Equations:\n    \x03c3 = My/I\n\n    %g = %g*%g / I\n    I = %g*%g / %g\n    I = %g mm^4\n',s,M,y,M,y,s,I)
+fprintf(' DistFromNeutral()n\======================\n')
+fprintf('Equations:\n    y = s*I/M')
